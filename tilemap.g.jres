@@ -1,0 +1,30 @@
+{
+    "transparency16": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true
+    },
+    "level1": {
+        "id": "level1",
+        "mimeType": "application/mkcd-tilemap",
+        "data": "MTAxMDAwMTAwMDAyMDYwNjA2MDYwNjA2MDYwNjA2MDYwNjA2MDYwNjAxMDUwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDgwNTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwODA1MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA4MDUwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDgwNTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwODA1MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA4MDUwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDgwNTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwODA1MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA4MDUwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDgwNTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwODA1MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA4MDUwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDgwNTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwOTA5MDkwODA0MDcwNzA3MDcwNzA3MDcwNzA3MDcwNzA3MDcwNzAzMjIyMjIyMjIyMjIyMjIyMjAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMjIyMjIyMjIyMjIyMjIyMg==",
+        "tileset": [
+            "myTiles.transparency16",
+            "sprites.dungeon.purpleOuterNorthEast",
+            "sprites.dungeon.purpleOuterNorthWest",
+            "sprites.dungeon.purpleOuterSouthWest",
+            "sprites.dungeon.purpleOuterSouthEast",
+            "sprites.dungeon.purpleOuterWest1",
+            "sprites.dungeon.purpleOuterNorth1",
+            "sprites.dungeon.purpleOuterSouth1",
+            "sprites.dungeon.purpleOuterEast0",
+            "sprites.dungeon.darkGroundNorthWest0"
+        ],
+        "displayName": "level1"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myTiles"
+    }
+}

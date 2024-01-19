@@ -1,0 +1,22 @@
+{
+    "image1": {
+        "data": "hwQQABAAAAAAAAAAAAD/AAAAAAAAwP0AAAAAAMDM/QAAAADAzNz9AAAAzBzR3fEAAMC7EREREQ8AXLsRERwRD8BVuxsREREPwFW7u7sRsfXAVRsRERG79cBVuxGxu1v1wFW1ERERW/XAXMXMW/tf9QBcxQBbu/D/AMAMAFxVDAAAAAAAzMwMAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myImage"
+    },
+    "image2": {
+        "data": "hwQQABAAAAAAAAAA/w8AAAAAAMBE9AAAAAAATEREDwAAAMBEREQPAAAATET0RPQAAMDcRERE/QAAzEQRERFEDwDMRETExEQPwM1ERMRETw/AzURERP9PD8DNTURERMTNwN0cTUTU3M0AzMwREf2/zQAAAMz0/8wMAADARET0AAAAAMDM//8AAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myImage0"
+    },
+    "image3": {
+        "data": "hwQQABAAAAAAAAAAALzMDAAA+7/AVVTFAMD1X8tFVcUAwFVVVbRVxQAAzDxVRcvFAMBmxlNFRMwAbMw8VUTExMDGVVVFzFwMwMP1X8xVVQzAM/zPw1VVDMAzM2YzXFUMbDMzYzOzzAw8NjNjM8PLzMA8M2Mzw1vFAMAzzDMMsMwAAMzMzAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myImage1"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}

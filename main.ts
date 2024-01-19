@@ -203,4 +203,10 @@ let cameracenter = sprites.create(img`
     `, SpriteKind.Player)
 game.onUpdate(function () {
     cameracenter.setPosition((P1.x + P2.x) / 2, (P1.y + P2.y) / 2)
+    // Makes enemy follow player after player enters its 75 pixel radius
+    for (let value of sprites.allOfKind(SpriteKind.Enemy)) {
+        if (value.x > P1.x - 75 && value.x < P1.x + 75 && (value.y > P1.y - 75 && value.y < P1.y + 75)) {
+            value.follow(P1, 50)
+        }
+    }
 })

@@ -60,6 +60,25 @@ c 5 5 5 c 4 c 5 5 5 5 c c 5 b .
 c 5 5 5 5 c 4 c c c c c c 5 c . 
 . c c c c c c . . . . . c c c . 
 `;
+            case "image4":
+            case "myImage2":return img`
+. . . f f f f f . . . . 
+. . f e e e e e f f . . 
+. f e e e e e e e f f . 
+f e e e e e e e f f f f 
+f e e 4 e e e f f f f f 
+f e e 4 4 e e e f f f f 
+f f e 4 4 4 4 4 f f f f 
+f f e 4 4 f f 4 e 4 f f 
+. f f d d d d 4 d 4 f . 
+. . f b b d d 4 f f f . 
+. . f e 4 4 4 e e f . . 
+. . f 1 1 1 e d d 4 . . 
+. . f 1 1 1 e d d e . . 
+. . f 6 6 6 f e e f . . 
+. . . f f f f f f . . . 
+. . . . . f f f . . . . 
+`;
         }
         return null;
     })

@@ -204,6 +204,3 @@ let cameracenter = sprites.create(img`
 game.onUpdate(function () {
     cameracenter.setPosition((P1.x + P2.x) / 2, (P1.y + P2.y) / 2)
 })
-forever(function () {
-	
-})

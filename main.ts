@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const enragedEnemy = SpriteKind.create()
+}
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     P1.setImage(img`
         . . . . . . f f f f . . . . . . 
@@ -17,14 +20,6 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . f f f f f f . . . . . 
         . . . . . f f . . f f . . . . . 
         `)
-})
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    SpawnLocation = tiles.getTilesByType(sprites.dungeon.darkGroundNorthWest0)
-    for (let index = 0; index < 20; index++) {
-        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-        EnemySprite = sprites.create(EnemyImages._pickRandom(), SpriteKind.Enemy)
-        tiles.placeOnTile(EnemySprite, SpawnLocation.removeAt(randint(0, SpawnLocation.length - 1)))
-    }
 })
 controller.player2.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pressed, function () {
     P2.setImage(img`
@@ -152,16 +147,11 @@ controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pr
 let EnemySprite: Sprite = null
 let SpawnLocation: tiles.Location[] = []
 let P2: Sprite = null
-let EnemyImages: Image[] = []
 let P1: Sprite = null
-P1 = sprites.create(assets.image`myImage2`, SpriteKind.Player)
-controller.moveSprite(P1, 100, 100)
 scene.setBackgroundColor(6)
 tiles.setCurrentTilemap(tilemap`level1`)
-EnemyImages = [assets.image`myImage`, assets.image`myImage0`, assets.image`myImage1`]
-scene.cameraFollowSprite(P1)
-tiles.placeOnTile(P1, tiles.getTileLocation(0, 0))
-P1.setStayInScreen(true)
+P1 = sprites.create(assets.image`myImage2`, SpriteKind.Player)
+controller.moveSprite(P1, 100, 100)
 P2 = sprites.create(img`
     . . . . . . . . . . . . 
     . . . f f f f f f . . . 
@@ -181,32 +171,35 @@ P2 = sprites.create(img`
     . . f f . . . f f f . . 
     `, SpriteKind.Player)
 controller.player2.moveSprite(P2, 100, 100)
+tiles.placeOnTile(P1, tiles.getTileLocation(0, 0))
 tiles.placeOnTile(P2, tiles.getTileLocation(0, 0))
-P2.setStayInScreen(true)
-let cameracenter = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . c c c . . . . . . 
-    . . . . . . a b a a . . . . . . 
-    . . . . . c b a f c a c . . . . 
-    . . . . c b b b f f a c c . . . 
-    . . . . b b f a b b a a c . . . 
-    . . . . c b f f b a f c a . . . 
-    . . . . . c a a c b b a . . . . 
-    . . . . . . c c c c . . . . . . 
-    . . . . . . . c . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
+let EnemyImages = [assets.image`myImage`, assets.image`myImage0`, assets.image`myImage1`]
+splitScreen.setSplitScreenEnabled(true)
+splitScreen.cameraFollowSprite(splitScreen.Camera.Camera1, P1)
+splitScreen.cameraFollowSprite(splitScreen.Camera.Camera2, P2)
+splitScreen.setBorderColor(15)
+let enemyList: Sprite[] = []
+let wave = 0
 game.onUpdate(function () {
-    cameracenter.setPosition((P1.x + P2.x) / 2, (P1.y + P2.y) / 2)
     // Makes enemy follow player after player enters its 75 pixel radius
     for (let value of sprites.allOfKind(SpriteKind.Enemy)) {
         if (value.x > P1.x - 75 && value.x < P1.x + 75 && (value.y > P1.y - 75 && value.y < P1.y + 75)) {
             value.follow(P1, 50)
+            value.setKind(SpriteKind.enragedEnemy)
+        }
+        if (value.x > P2.x - 75 && value.x < P2.x + 75 && (value.y > P2.y - 75 && value.y < P2.y + 75)) {
+            value.follow(P2, 50)
+            value.setKind(SpriteKind.enragedEnemy)
         }
     }
+    if (enemyList.length == 0) {
+        SpawnLocation = tiles.getTilesByType(sprites.dungeon.darkGroundNorthWest0)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+        for (let index = 0; index < 20; index++) {
+            EnemySprite = sprites.create(EnemyImages._pickRandom(), SpriteKind.Enemy)
+            tiles.placeOnTile(EnemySprite, SpawnLocation.removeAt(randint(0, SpawnLocation.length - 1)))
+            enemyList.push(EnemySprite)
+        }
+    }
+    wave += 1
 })

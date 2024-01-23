@@ -3,7 +3,10 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "arcade-split-screen": "github:riknoll/arcade-split-screen#v0.0.3"
+        "arcade-split-screen": "github:riknoll/arcade-split-screen#v0.0.3",
+        "arcade-text": "github:microsoft/arcade-text#v1.3.0",
+        "controller": "*",
+        "mouse": "*"
     },
     "files": [
         "main.blocks",

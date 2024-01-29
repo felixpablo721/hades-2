@@ -303,6 +303,9 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . f f . . f f . . . . . 
         `)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+	
+})
 controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
     P2.setImage(img`
         . . . f f f f f . . . . 

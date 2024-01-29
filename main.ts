@@ -23,6 +23,49 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . f f . . f f . . . . . 
         `)
 })
+function attackModify (pu: Sprite) {
+    if (pu.image.equals(img`
+        . . . . c c c b b b b b . . . . 
+        . . c c b 4 4 4 4 4 4 b b b . . 
+        . c c 4 4 4 4 4 5 4 4 4 4 b c . 
+        . e 4 4 4 4 4 4 4 4 4 5 4 4 e . 
+        e b 4 5 4 4 5 4 4 4 4 4 4 4 b c 
+        e b 4 4 4 4 4 4 4 4 4 4 5 4 4 e 
+        e b b 4 4 4 4 4 4 4 4 4 4 4 b e 
+        . e b 4 4 4 4 4 5 4 4 4 4 b e . 
+        8 7 e e b 4 4 4 4 4 4 b e e 6 8 
+        8 7 2 e e e e e e e e e e 2 7 8 
+        e 6 6 2 2 2 2 2 2 2 2 2 2 6 c e 
+        e c 6 7 6 6 7 7 7 6 6 7 6 c c e 
+        e b e 8 8 c c 8 8 c c c 8 e b e 
+        e e b e c c e e e e e c e b e e 
+        . e e b b 4 4 4 4 4 4 4 4 e e . 
+        . . . c c c c c e e e e e . . . 
+        `)) {
+        projectileSize += 1
+    } else if (pu.image.equals(img`
+        4 4 4 . . 4 4 4 4 4 . . . . . . 
+        4 5 5 4 4 5 5 5 5 5 4 4 . . . . 
+        b 4 5 5 1 5 1 1 1 5 5 5 4 . . . 
+        . b 5 5 5 5 1 1 5 5 1 1 5 4 . . 
+        . b d 5 5 5 5 5 5 5 5 1 1 5 4 . 
+        b 4 5 5 5 5 5 5 5 5 5 5 1 5 4 . 
+        c d 5 5 5 5 5 5 5 5 5 5 5 5 5 4 
+        c d 4 5 5 5 5 5 5 5 5 5 5 1 5 4 
+        c 4 5 5 5 d 5 5 5 5 5 5 5 5 5 4 
+        c 4 d 5 4 5 d 5 5 5 5 5 5 5 5 4 
+        . c 4 5 5 5 5 d d d 5 5 5 5 5 b 
+        . c 4 d 5 4 5 d 4 4 d 5 5 5 4 c 
+        . . c 4 4 d 4 4 4 4 4 d d 5 d c 
+        . . . c 4 4 4 4 4 4 4 4 5 5 5 4 
+        . . . . c c b 4 4 4 b b 4 5 4 4 
+        . . . . . . c c c c c c b b 4 . 
+        `)) {
+        projectileSpeed += 50
+    } else {
+        projectileAmount += 1
+    }
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     // Shoots projectile when the time after a successful attack surpasses the minimum time of .5 seconds
     if (game.runtime() - Lastpressed >= timebetweenpress) {
@@ -44,24 +87,27 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . f f f f f f . . . . . 
             . . . . . . . f f f . . . . . . 
             `)) {
-            projectile = sprites.createProjectileFromSprite(img`
-                . . . . . . . b b . . . . . . . 
-                . . . . . . b d d b . . . . . . 
-                . . . . . b d 5 5 d b . . . . . 
-                . . . . b b 5 5 5 5 b b . . . . 
-                . . . . b 5 5 5 5 5 5 b . . . . 
-                b b b b b 5 5 5 5 1 1 d b b b b 
-                b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
-                b d d 5 5 5 5 5 5 1 1 1 5 d d b 
-                . b d d 5 5 5 5 5 5 5 5 d d b . 
-                . . b b 5 5 5 5 5 5 5 5 b b . . 
-                . . c b 5 5 5 5 5 5 5 5 b c . . 
-                . . c 5 5 5 5 d d 5 5 5 5 c . . 
-                . . c 5 5 d b b b b d 5 5 c . . 
-                . . c 5 d b c c c c b d 5 c . . 
-                . . c c c c . . . . c c c c . . 
-                . . . . . . . . . . . . . . . . 
-                `, P1, -150, 0)
+            for (let index = 0; index < projectileAmount; index++) {
+                projectile = sprites.createProjectileFromSprite(img`
+                    . . . . . . . b b . . . . . . . 
+                    . . . . . . b d d b . . . . . . 
+                    . . . . . b d 5 5 d b . . . . . 
+                    . . . . b b 5 5 5 5 b b . . . . 
+                    . . . . b 5 5 5 5 5 5 b . . . . 
+                    b b b b b 5 5 5 5 1 1 d b b b b 
+                    b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
+                    b d d 5 5 5 5 5 5 1 1 1 5 d d b 
+                    . b d d 5 5 5 5 5 5 5 5 d d b . 
+                    . . b b 5 5 5 5 5 5 5 5 b b . . 
+                    . . c b 5 5 5 5 5 5 5 5 b c . . 
+                    . . c 5 5 5 5 d d 5 5 5 5 c . . 
+                    . . c 5 5 d b b b b d 5 5 c . . 
+                    . . c 5 d b c c c c b d 5 c . . 
+                    . . c c c c . . . . c c c c . . 
+                    . . . . . . . . . . . . . . . . 
+                    `, P1, 0 - projectileSpeed, 0)
+                pause(50)
+            }
         } else if (P1.image.equals(img`
             . . . . . . f f f f f f . . . . 
             . . . . f f e e e e f 2 f . . . 
@@ -80,24 +126,27 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . . f f f f f f . . . . 
             . . . . . . . f f f . . . . . . 
             `)) {
-            projectile = sprites.createProjectileFromSprite(img`
-                . . . . . . . b b . . . . . . . 
-                . . . . . . b d d b . . . . . . 
-                . . . . . b d 5 5 d b . . . . . 
-                . . . . b b 5 5 5 5 b b . . . . 
-                . . . . b 5 5 5 5 5 5 b . . . . 
-                b b b b b 5 5 5 5 1 1 d b b b b 
-                b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
-                b d d 5 5 5 5 5 5 1 1 1 5 d d b 
-                . b d d 5 5 5 5 5 5 5 5 d d b . 
-                . . b b 5 5 5 5 5 5 5 5 b b . . 
-                . . c b 5 5 5 5 5 5 5 5 b c . . 
-                . . c 5 5 5 5 d d 5 5 5 5 c . . 
-                . . c 5 5 d b b b b d 5 5 c . . 
-                . . c 5 d b c c c c b d 5 c . . 
-                . . c c c c . . . . c c c c . . 
-                . . . . . . . . . . . . . . . . 
-                `, P1, 150, 0)
+            for (let index = 0; index < projectileAmount; index++) {
+                projectile = sprites.createProjectileFromSprite(img`
+                    . . . . . . . b b . . . . . . . 
+                    . . . . . . b d d b . . . . . . 
+                    . . . . . b d 5 5 d b . . . . . 
+                    . . . . b b 5 5 5 5 b b . . . . 
+                    . . . . b 5 5 5 5 5 5 b . . . . 
+                    b b b b b 5 5 5 5 1 1 d b b b b 
+                    b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
+                    b d d 5 5 5 5 5 5 1 1 1 5 d d b 
+                    . b d d 5 5 5 5 5 5 5 5 d d b . 
+                    . . b b 5 5 5 5 5 5 5 5 b b . . 
+                    . . c b 5 5 5 5 5 5 5 5 b c . . 
+                    . . c 5 5 5 5 d d 5 5 5 5 c . . 
+                    . . c 5 5 d b b b b d 5 5 c . . 
+                    . . c 5 d b c c c c b d 5 c . . 
+                    . . c c c c . . . . c c c c . . 
+                    . . . . . . . . . . . . . . . . 
+                    `, P1, projectileSpeed, 0)
+                pause(50)
+            }
         } else if (P1.image.equals(img`
             . . . . . . f f f f . . . . . . 
             . . . . f f e e e e f f . . . . 
@@ -116,24 +165,27 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . f f f f f f . . . . . 
             . . . . . f f . . f f . . . . . 
             `)) {
-            projectile = sprites.createProjectileFromSprite(img`
-                . . . . . . . b b . . . . . . . 
-                . . . . . . b d d b . . . . . . 
-                . . . . . b d 5 5 d b . . . . . 
-                . . . . b b 5 5 5 5 b b . . . . 
-                . . . . b 5 5 5 5 5 5 b . . . . 
-                b b b b b 5 5 5 5 1 1 d b b b b 
-                b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
-                b d d 5 5 5 5 5 5 1 1 1 5 d d b 
-                . b d d 5 5 5 5 5 5 5 5 d d b . 
-                . . b b 5 5 5 5 5 5 5 5 b b . . 
-                . . c b 5 5 5 5 5 5 5 5 b c . . 
-                . . c 5 5 5 5 d d 5 5 5 5 c . . 
-                . . c 5 5 d b b b b d 5 5 c . . 
-                . . c 5 d b c c c c b d 5 c . . 
-                . . c c c c . . . . c c c c . . 
-                . . . . . . . . . . . . . . . . 
-                `, P1, 0, -150)
+            for (let index = 0; index < projectileAmount; index++) {
+                projectile = sprites.createProjectileFromSprite(img`
+                    . . . . . . . b b . . . . . . . 
+                    . . . . . . b d d b . . . . . . 
+                    . . . . . b d 5 5 d b . . . . . 
+                    . . . . b b 5 5 5 5 b b . . . . 
+                    . . . . b 5 5 5 5 5 5 b . . . . 
+                    b b b b b 5 5 5 5 1 1 d b b b b 
+                    b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
+                    b d d 5 5 5 5 5 5 1 1 1 5 d d b 
+                    . b d d 5 5 5 5 5 5 5 5 d d b . 
+                    . . b b 5 5 5 5 5 5 5 5 b b . . 
+                    . . c b 5 5 5 5 5 5 5 5 b c . . 
+                    . . c 5 5 5 5 d d 5 5 5 5 c . . 
+                    . . c 5 5 d b b b b d 5 5 c . . 
+                    . . c 5 d b c c c c b d 5 c . . 
+                    . . c c c c . . . . c c c c . . 
+                    . . . . . . . . . . . . . . . . 
+                    `, P1, 0, 0 - projectileSpeed)
+                pause(50)
+            }
         } else if (P1.image.equals(img`
             . . . . . . f f f f . . . . . . 
             . . . . f f f 2 2 f f f . . . . 
@@ -152,25 +204,29 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . f f f f f f . . . . . 
             . . . . . f f . . f f . . . . . 
             `)) {
-            projectile = sprites.createProjectileFromSprite(img`
-                . . . . . . . b b . . . . . . . 
-                . . . . . . b d d b . . . . . . 
-                . . . . . b d 5 5 d b . . . . . 
-                . . . . b b 5 5 5 5 b b . . . . 
-                . . . . b 5 5 5 5 5 5 b . . . . 
-                b b b b b 5 5 5 5 1 1 d b b b b 
-                b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
-                b d d 5 5 5 5 5 5 1 1 1 5 d d b 
-                . b d d 5 5 5 5 5 5 5 5 d d b . 
-                . . b b 5 5 5 5 5 5 5 5 b b . . 
-                . . c b 5 5 5 5 5 5 5 5 b c . . 
-                . . c 5 5 5 5 d d 5 5 5 5 c . . 
-                . . c 5 5 d b b b b d 5 5 c . . 
-                . . c 5 d b c c c c b d 5 c . . 
-                . . c c c c . . . . c c c c . . 
-                . . . . . . . . . . . . . . . . 
-                `, P1, 0, 150)
+            for (let index = 0; index < projectileAmount; index++) {
+                projectile = sprites.createProjectileFromSprite(img`
+                    . . . . . . . b b . . . . . . . 
+                    . . . . . . b d d b . . . . . . 
+                    . . . . . b d 5 5 d b . . . . . 
+                    . . . . b b 5 5 5 5 b b . . . . 
+                    . . . . b 5 5 5 5 5 5 b . . . . 
+                    b b b b b 5 5 5 5 1 1 d b b b b 
+                    b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
+                    b d d 5 5 5 5 5 5 1 1 1 5 d d b 
+                    . b d d 5 5 5 5 5 5 5 5 d d b . 
+                    . . b b 5 5 5 5 5 5 5 5 b b . . 
+                    . . c b 5 5 5 5 5 5 5 5 b c . . 
+                    . . c 5 5 5 5 d d 5 5 5 5 c . . 
+                    . . c 5 5 d b b b b d 5 5 c . . 
+                    . . c 5 d b c c c c b d 5 c . . 
+                    . . c c c c . . . . c c c c . . 
+                    . . . . . . . . . . . . . . . . 
+                    `, P1, 0, projectileSpeed)
+                pause(50)
+            }
         }
+        projectile.setScale(projectileSize, ScaleAnchor.Middle)
         Lastpressed = game.runtime()
     }
 })
@@ -282,6 +338,68 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
         info.player2.changeLifeBy(-1)
         splitScreen.cameraShake(splitScreen.Camera.Camera2, 4, 500)
     }
+    enemyList.removeAt(enemyList.indexOf(sprite))
+    sprite.setKind(SpriteKind.killExplosion)
+    sprite.setVelocity(0, 0)
+    animation.runImageAnimation(
+    sprite,
+    [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . 4 4 . . . . . . . 
+        . . . . . . 4 5 5 4 . . . . . . 
+        . . . . . . 2 5 5 2 . . . . . . 
+        . . . . . . . 2 2 . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . 4 . . . . . 
+        . . . . 2 . . . . 4 4 . . . . . 
+        . . . . 2 4 . . 4 5 4 . . . . . 
+        . . . . . 2 4 d 5 5 4 . . . . . 
+        . . . . . 2 5 5 5 5 4 . . . . . 
+        . . . . . . 2 5 5 5 5 4 . . . . 
+        . . . . . . 2 5 4 2 4 4 . . . . 
+        . . . . . . 4 4 . . 2 4 4 . . . 
+        . . . . . 4 4 . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . 3 . . . . . . . . . . . 4 . . 
+        . 3 3 . . . . . . . . . 4 4 . . 
+        . 3 d 3 . . 4 4 . . 4 4 d 4 . . 
+        . . 3 5 3 4 5 5 4 4 d d 4 4 . . 
+        . . 3 d 5 d 1 1 d 5 5 d 4 4 . . 
+        . . 4 5 5 1 1 1 1 5 1 1 5 4 . . 
+        . 4 5 5 5 5 1 1 5 1 1 1 d 4 4 . 
+        . 4 d 5 1 1 5 5 5 1 1 1 5 5 4 . 
+        . 4 4 5 1 1 5 5 5 5 5 d 5 5 4 . 
+        . . 4 3 d 5 5 5 d 5 5 d d d 4 . 
+        . 4 5 5 d 5 5 5 d d d 5 5 4 . . 
+        . 4 5 5 d 3 5 d d 3 d 5 5 4 . . 
+        . 4 4 d d 4 d d d 4 3 d d 4 . . 
+        . . 4 5 4 4 4 4 4 4 4 4 4 . . . 
+        . 4 5 4 . . 4 4 4 . . . 4 4 . . 
+        . 4 4 . . . . . . . . . . 4 4 . 
+        `],
+    100,
+    false
+    )
+    pause(300)
+    sprites.destroy(sprite)
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     P1.setImage(img`
@@ -303,9 +421,6 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . f f . . f f . . . . . 
         `)
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
-	
-})
 controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
     P2.setImage(img`
         . . . f f f f f . . . . 
@@ -326,9 +441,12 @@ controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pr
         . . . . . f f f . . . . 
         `)
 })
-function modifyAttack (powers: any[]) {
-	
-}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    powerUPp1.push(otherSprite)
+    availablePowerUP.removeAt(availablePowerUP.indexOf(otherSprite))
+    attackModify(otherSprite)
+    sprites.destroy(otherSprite)
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
     sprite.setKind(SpriteKind.killExplosion)
@@ -396,10 +514,16 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
 })
 let boss: Sprite = null
 let EnemySprite: Sprite = null
+let powerUPSprite: Sprite = null
 let SpawnLocation: tiles.Location[] = []
 let projectile: Sprite = null
 let timebetweenpress = 0
 let Lastpressed = 0
+let projectileSize = 0
+let projectileAmount = 0
+let projectileSpeed = 0
+let powerUPp1: Sprite[] = []
+let availablePowerUP: Sprite[] = []
 let enemyList: Sprite[] = []
 let P2: Sprite = null
 let P1: Sprite = null
@@ -515,22 +639,22 @@ let powerUpList = [img`
     . e e b b 4 4 4 4 4 4 4 4 e e . 
     . . . c c c c c e e e e e . . . 
     `, img`
-    . . . . . . . e c 7 . . . . . . 
-    . . . . e e e c 7 7 e e . . . . 
-    . . c e e e e c 7 e 2 2 e e . . 
-    . c e e e e e c 6 e e 2 2 2 e . 
-    . c e e e 2 e c c 2 4 5 4 2 e . 
-    c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
-    c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
-    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-    c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
-    . e e e 2 2 2 2 2 2 2 2 2 4 e . 
-    . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
-    . . 2 e e 2 2 2 2 2 4 4 2 e . . 
-    . . . 2 2 e e 4 4 4 2 e e . . . 
-    . . . . . 2 2 e e e e . . . . . 
+    . . . . . . . . . . . 6 6 6 6 6 
+    . . . . . . . . . 6 6 7 7 7 7 8 
+    . . . . . . 8 8 8 7 7 8 8 6 8 8 
+    . . e e e e c 6 6 8 8 . 8 7 8 . 
+    . e 2 5 4 2 e c 8 . . . 6 7 8 . 
+    e 2 4 2 2 2 2 2 c . . . 6 7 8 . 
+    e 2 2 2 2 2 2 2 c . . . 8 6 8 . 
+    e 2 e e 2 2 2 2 e e e e c 6 8 . 
+    c 2 e e 2 2 2 2 e 2 5 4 2 c 8 . 
+    . c 2 e e e 2 e 2 4 2 2 2 2 c . 
+    . . c 2 2 2 e e 2 2 2 2 2 2 2 e 
+    . . . e c c e c 2 2 2 2 2 2 2 e 
+    . . . . . . . c 2 e e 2 2 e 2 c 
+    . . . . . . . c e e e e e e 2 c 
+    . . . . . . . . c e 2 2 2 2 c . 
+    . . . . . . . . . c c c c c . . 
     `, img`
     4 4 4 . . 4 4 4 4 4 . . . . . . 
     4 5 5 4 4 5 5 5 5 5 4 4 . . . . 
@@ -554,7 +678,13 @@ splitScreen.cameraFollowSprite(splitScreen.Camera.Camera1, P1)
 splitScreen.cameraFollowSprite(splitScreen.Camera.Camera2, P2)
 splitScreen.setBorderColor(15)
 enemyList = []
+availablePowerUP = []
+powerUPp1 = []
+let powerUPp2: number[] = []
 let wave = 0
+projectileSpeed = 150
+projectileAmount = 1
+projectileSize = 1
 Lastpressed = 0
 // Sets time between attack outputs to be at minimum of .5 seconds
 timebetweenpress = 500
@@ -577,6 +707,14 @@ game.onUpdate(function () {
         // Enemies spawn in random floor tiles
         SpawnLocation = tiles.getTilesByType(sprites.dungeon.floorDark0)
         sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+        if (wave >= 1) {
+            // Initially spawns 10 enemies, but increases by 10 every wave/every iteration of enemy spawning.
+            for (let index = 0; index < 3; index++) {
+                powerUPSprite = sprites.create(powerUpList._pickRandom(), SpriteKind.Food)
+                tiles.placeOnTile(powerUPSprite, SpawnLocation.removeAt(randint(0, SpawnLocation.length - 1)))
+                availablePowerUP.push(powerUPSprite)
+            }
+        }
         if (wave < 3) {
             // Initially spawns 10 enemies, but increases by 10 every wave/every iteration of enemy spawning.
             for (let index = 0; index < 10 + wave * 10; index++) {
@@ -618,6 +756,38 @@ game.onUpdate(function () {
                 .........cc55555555c...........
                 ..........cccccccccc...........
                 `, SpriteKind.boss)
+            enemyList.push(sprites.create(img`
+                ..............ccccccccc........
+                ............cc555555555cc......
+                ...........c5555555555555c.....
+                ..........c55555555555555dc....
+                .........c555555555555b5bdc....
+                .........555bc1555555555bdcccc.
+                ........c555ccc55555555bbdccddc
+                ........c555bcb5555555ccddcdddc
+                .......c555555555551ccccddbdddc
+                .......c555555b555c1cccbddbbdbc
+                .......c5555555bbc33333ddddbcc.
+                .......c555555555bc333555ddbc..
+                .......c5555555555555555555c...
+                .......cd555555555555cccc555c..
+                .......cd55555555555c555c555c..
+                .......cdd555555555b5555b555c..
+                .......cddd55555ddbb555bb555c..
+                .......cdddd55555555555b5555c..
+                .......cddddd5555555ddb5555dc..
+                c......cdddddd555555555555dcc..
+                cc...ccddddddd555555555555dc...
+                cdccccdddddd555555d55555ddcc...
+                cdddddddddbd5555555ddddddccccc.
+                ccdddddddbb55555555bddddccbddc.
+                .ccddddddbd55555555bdddccdddc..
+                ..cccddddbd5555555cddcccddbc...
+                ....ccccccd555555bcccc.cccc....
+                .........cc555555bc............
+                .........cc55555555c...........
+                ..........cccccccccc...........
+                `, SpriteKind.boss))
             tiles.placeOnTile(boss, tiles.getTileLocation(8, 8))
         }
     }

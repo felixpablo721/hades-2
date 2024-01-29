@@ -1,6 +1,7 @@
 namespace SpriteKind {
     export const killExplosion = SpriteKind.create()
     export const boss = SpriteKind.create()
+    export const enragedEnemy = SpriteKind.create()
 }
 // changes player sprite to face direction of movement
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -174,6 +175,156 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         Lastpressed = game.runtime()
     }
 })
+controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
+    if (game.runtime() - Lastpressed >= timebetweenpress) {
+        if (P1.image.equals(img`
+            . . . . . . . . . . . . 
+            . . . f f f f f f . . . 
+            . . f e e e e e f f f . 
+            . f e e e e e e e f f f 
+            f e e e e e e e f f f f 
+            f e e 4 e e e f f f f f 
+            f e e 4 4 e e e f f f f 
+            f f e 4 4 4 4 4 f f f f 
+            . f e 4 4 f f 4 e 4 f f 
+            . . f d d d d 4 d 4 f . 
+            . . f b b d e e f f f . 
+            . . f e 4 e d d 4 f . . 
+            . . f 1 1 e d d e f . . 
+            . f f 6 6 f e e f f f . 
+            . f f f f f f f f f f . 
+            . . f f f . . . f f . . 
+            `)) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . b b . . . . . . . 
+                . . . . . . b d d b . . . . . . 
+                . . . . . b d 5 5 d b . . . . . 
+                . . . . b b 5 5 5 5 b b . . . . 
+                . . . . b 5 5 5 5 5 5 b . . . . 
+                b b b b b 5 5 5 5 1 1 d b b b b 
+                b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
+                b d d 5 5 5 5 5 5 1 1 1 5 d d b 
+                . b d d 5 5 5 5 5 5 5 5 d d b . 
+                . . b b 5 5 5 5 5 5 5 5 b b . . 
+                . . c b 5 5 5 5 5 5 5 5 b c . . 
+                . . c 5 5 5 5 d d 5 5 5 5 c . . 
+                . . c 5 5 d b b b b d 5 5 c . . 
+                . . c 5 d b c c c c b d 5 c . . 
+                . . c c c c . . . . c c c c . . 
+                . . . . . . . . . . . . . . . . 
+                `, P1, -150, 0)
+        } else if (P1.image.equals(img`
+            . . . . . . . . . . . . 
+            . . . f f f f f f . . . 
+            . f f f e e e e e f . . 
+            f f f e e e e e e e f . 
+            f f f f e e e e e e e f 
+            f f f f f e e e 4 e e f 
+            f f f f e e e 4 4 e e f 
+            f f f f 4 4 4 4 4 e f f 
+            f f 4 e 4 f f 4 4 e f . 
+            f f 4 d 4 d d d d f . . 
+            . f f f 4 d d b b f . . 
+            . 4 d d e 4 4 4 e f . . 
+            . e d d e 1 1 1 1 f . . 
+            . f e e f 6 6 6 6 f f . 
+            . f f f f f f f f f f . 
+            . . f f . . . f f f . . 
+            `)) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . b b . . . . . . . 
+                . . . . . . b d d b . . . . . . 
+                . . . . . b d 5 5 d b . . . . . 
+                . . . . b b 5 5 5 5 b b . . . . 
+                . . . . b 5 5 5 5 5 5 b . . . . 
+                b b b b b 5 5 5 5 1 1 d b b b b 
+                b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
+                b d d 5 5 5 5 5 5 1 1 1 5 d d b 
+                . b d d 5 5 5 5 5 5 5 5 d d b . 
+                . . b b 5 5 5 5 5 5 5 5 b b . . 
+                . . c b 5 5 5 5 5 5 5 5 b c . . 
+                . . c 5 5 5 5 d d 5 5 5 5 c . . 
+                . . c 5 5 d b b b b d 5 5 c . . 
+                . . c 5 d b c c c c b d 5 c . . 
+                . . c c c c . . . . c c c c . . 
+                . . . . . . . . . . . . . . . . 
+                `, P1, 150, 0)
+        } else if (P1.image.equals(img`
+            . . . . f f f f . . . . 
+            . . f f e e e e f f . . 
+            . f e e e e e e e f f . 
+            f f e f e e e e e e f f 
+            f f f e e e e e e e e f 
+            f f f e e e e e e f e f 
+            f f f f e e e e f f f f 
+            f f f f f f f f f f f f 
+            f f f f f f f f f f f f 
+            . f f f f f f f f f f . 
+            . e f f f f f f f f e . 
+            e 4 f b b b b b b f 4 e 
+            4 d f d d d d d d c d 4 
+            4 4 f 6 6 6 6 6 6 f 4 4 
+            . . . f f f f f f . . . 
+            . . . f f . . f f . . . 
+            `)) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . b b . . . . . . . 
+                . . . . . . b d d b . . . . . . 
+                . . . . . b d 5 5 d b . . . . . 
+                . . . . b b 5 5 5 5 b b . . . . 
+                . . . . b 5 5 5 5 5 5 b . . . . 
+                b b b b b 5 5 5 5 1 1 d b b b b 
+                b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
+                b d d 5 5 5 5 5 5 1 1 1 5 d d b 
+                . b d d 5 5 5 5 5 5 5 5 d d b . 
+                . . b b 5 5 5 5 5 5 5 5 b b . . 
+                . . c b 5 5 5 5 5 5 5 5 b c . . 
+                . . c 5 5 5 5 d d 5 5 5 5 c . . 
+                . . c 5 5 d b b b b d 5 5 c . . 
+                . . c 5 d b c c c c b d 5 c . . 
+                . . c c c c . . . . c c c c . . 
+                . . . . . . . . . . . . . . . . 
+                `, P1, 0, -150)
+        } else if (P1.image.equals(img`
+            . . . . . . . . . . . . 
+            . . . f f f f f f . . . 
+            . f f f e e e e f f f . 
+            f f f e e e e e e f f f 
+            f f f f 4 e e e f f f f 
+            f f f 4 4 4 e e f f f f 
+            f f f 4 4 4 4 e e f f f 
+            f 4 e 4 4 4 4 4 4 e 4 f 
+            f 4 4 f f 4 4 f f 4 4 f 
+            f e 4 d d d d d d 4 e f 
+            . f e d d b b d 4 e f e 
+            f f f e 4 4 4 4 d d 4 e 
+            e 4 f b 1 1 1 e d d e . 
+            . . f 6 6 6 6 f e e . . 
+            . . f f f f f f f . . . 
+            . . f f f . . . . . . . 
+            `)) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . b b . . . . . . . 
+                . . . . . . b d d b . . . . . . 
+                . . . . . b d 5 5 d b . . . . . 
+                . . . . b b 5 5 5 5 b b . . . . 
+                . . . . b 5 5 5 5 5 5 b . . . . 
+                b b b b b 5 5 5 5 1 1 d b b b b 
+                b 5 5 5 5 5 5 5 5 1 1 1 5 5 5 b 
+                b d d 5 5 5 5 5 5 1 1 1 5 d d b 
+                . b d d 5 5 5 5 5 5 5 5 d d b . 
+                . . b b 5 5 5 5 5 5 5 5 b b . . 
+                . . c b 5 5 5 5 5 5 5 5 b c . . 
+                . . c 5 5 5 5 d d 5 5 5 5 c . . 
+                . . c 5 5 d b b b b d 5 5 c . . 
+                . . c 5 d b c c c c b d 5 c . . 
+                . . c c c c . . . . c c c c . . 
+                . . . . . . . . . . . . . . . . 
+                `, P1, 0, 150)
+        }
+        Lastpressed = game.runtime()
+    }
+})
 controller.player2.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pressed, function () {
     P2.setImage(img`
         . . . . . . . . . . . . 
@@ -213,6 +364,86 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . f f f f f f . . . . . 
         . . . . . . . f f f . . . . . . 
         `)
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
+    sprites.destroy(sprite)
+    sprite.setKind(SpriteKind.Killexplosion)
+    sprite.setVelocity(0, 0)
+    animation.runImageAnimation(
+    sprite,
+    [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . 4 4 . . . . . . . 
+        . . . . . . 4 5 5 4 . . . . . . 
+        . . . . . . 2 5 5 2 . . . . . . 
+        . . . . . . . 2 2 . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . 4 . . . . . 
+        . . . . 2 . . . . 4 4 . . . . . 
+        . . . . 2 4 . . 4 5 4 . . . . . 
+        . . . . . 2 4 d 5 5 4 . . . . . 
+        . . . . . 2 5 5 5 5 4 . . . . . 
+        . . . . . . 2 5 5 5 5 4 . . . . 
+        . . . . . . 2 5 4 2 4 4 . . . . 
+        . . . . . . 4 4 . . 2 4 4 . . . 
+        . . . . . 4 4 . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . 3 . . . . . . . . . . . 4 . . 
+        . 3 3 . . . . . . . . . 4 4 . . 
+        . 3 d 3 . . 4 4 . . 4 4 d 4 . . 
+        . . 3 5 3 4 5 5 4 4 d d 4 4 . . 
+        . . 3 d 5 d 1 1 d 5 5 d 4 4 . . 
+        . . 4 5 5 1 1 1 1 5 1 1 5 4 . . 
+        . 4 5 5 5 5 1 1 5 1 1 1 d 4 4 . 
+        . 4 d 5 1 1 5 5 5 1 1 1 5 5 4 . 
+        . 4 4 5 1 1 5 5 5 5 5 d 5 5 4 . 
+        . . 4 3 d 5 5 5 d 5 5 d d d 4 . 
+        . 4 5 5 d 5 5 5 d d d 5 5 4 . . 
+        . 4 5 5 d 3 5 d d 3 d 5 5 4 . . 
+        . 4 4 d d 4 d d d 4 3 d d 4 . . 
+        . . 4 5 4 4 4 4 4 4 4 4 4 . . . 
+        . 4 5 4 . . 4 4 4 . . . 4 4 . . 
+        . 4 4 . . . . . . . . . . 4 4 . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . b b . b b b . . . . . 
+        . . . . b 1 1 b 1 1 1 b . . . . 
+        . . b b 3 1 1 d d 1 d d b b . . 
+        . b 1 1 d d b b b b b 1 1 b . . 
+        . b 1 1 1 b . . . . . b d d b . 
+        . . 3 d d b . . . . . b d 1 1 b 
+        . b 1 d 3 . . . . . . . b 1 1 b 
+        . b 1 1 b . . . . . . b b 1 d b 
+        . b 1 d b . . . . . . b d 3 d b 
+        . b b d d b . . . . b d d d b . 
+        . b d d d d b . b b 3 d d 3 b . 
+        . . b d d 3 3 b d 3 3 b b b . . 
+        . . . b b b d d d d d b . . . . 
+        . . . . . . b b b b b . . . . . 
+        `],
+    100,
+    false
+    )
+    sprites.destroy(sprite)
 })
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     P2.setImage(img`
@@ -394,15 +625,16 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     enemyList.removeAt(enemyList.indexOf(otherSprite))
     sprites.destroy(sprite)
 })
-let boss: Sprite = null
+let boss2: Sprite = null
 let EnemySprite: Sprite = null
+let wave = 0
 let SpawnLocation: tiles.Location[] = []
-let projectile: Sprite = null
-let timebetweenpress = 0
-let Lastpressed = 0
 let enemyList: Sprite[] = []
-let P2: Sprite = null
+let Lastpressed = 0
+let timebetweenpress = 0
+let projectile: Sprite = null
 let P1: Sprite = null
+let P2: Sprite = null
 scene.setBackgroundColor(6)
 tiles.setCurrentTilemap(tilemap`map`)
 P1 = sprites.create(img`
@@ -554,39 +786,168 @@ splitScreen.cameraFollowSprite(splitScreen.Camera.Camera1, P1)
 splitScreen.cameraFollowSprite(splitScreen.Camera.Camera2, P2)
 splitScreen.setBorderColor(15)
 enemyList = []
-let wave = 0
-Lastpressed = 0
 // Sets time between attack outputs to be at minimum of .5 seconds
-timebetweenpress = 500
 info.setLife(3)
 info.player2.setLife(3)
+Lastpressed = 0
+timebetweenpress = 500
+scene.setBackgroundColor(6)
+tiles.setCurrentTilemap(tilemap`map`)
+P1 = sprites.create(img`
+    . . . . . f f f f f f . . . . . 
+    . . . . f 2 f e e e e f f . . . 
+    . . . f 2 2 2 f e e e e f f . . 
+    . . . f e e e e f f e e e f . . 
+    . . f e 2 2 2 2 e e f f f f . . 
+    . . f 2 e f f f f 2 2 2 e f . . 
+    . . f f f e e e f f f f f f f . 
+    . . f e e 4 4 f b e 4 4 e f f . 
+    . . f f e d d f 1 4 d 4 e e f . 
+    . f d d f d d d d 4 e e e f . . 
+    . f b b f e e e 4 e e f f . . . 
+    . f b b e d d 4 2 2 2 f . . . . 
+    . . f b e d d e 2 2 2 e . . . . 
+    . . . f f e e f 4 4 4 f . . . . 
+    . . . . . f f f f f f . . . . . 
+    . . . . . . . f f f . . . . . . 
+    `, SpriteKind.Player)
+controller.moveSprite(P1, 100, 100)
+P2 = sprites.create(img`
+    . . . . . . . . . . . . 
+    . . . f f f f f f . . . 
+    . f f f e e e e e f . . 
+    f f f e e e e e e e f . 
+    f f f f e e e e e e e f 
+    f f f f f e e e 4 e e f 
+    f f f f e e e 4 4 e e f 
+    f f f f 4 4 4 4 4 e f f 
+    f f 4 e 4 f f 4 4 e f . 
+    f f 4 d 4 d d d d f . . 
+    . f f f 4 d d b b f . . 
+    . 4 d d e 4 4 4 e f . . 
+    . e d d e 1 1 1 1 f . . 
+    . f e e f 6 6 6 6 f f . 
+    . f f f f f f f f f f . 
+    . . f f . . . f f f . . 
+    `, SpriteKind.Player)
+controller.player2.moveSprite(P2, 100, 100)
+tiles.placeOnTile(P1, tiles.getTileLocation(0, 0))
+tiles.placeOnTile(P2, tiles.getTileLocation(0, 0))
+let powerups = [img`
+    .............beebbbb............
+    ............eebbbb4bb...........
+    ............eb344bb4bb..........
+    ............e44334bb4bb.........
+    ............eb433344b4be........
+    ............4eb43344444be.......
+    ...........bd4eb43333344bb......
+    ..........b455d4443333444bb.....
+    ..........4d5555d444333444bb....
+    .........4555555dd4b4443444be...
+    ........bd5555d555d4bb444444ee..
+    ........b55ddd665555bb4b44444ee.
+    .......bd5555677655554ebb44444eb
+    .......43222558855555d4eeb44b4ee
+    ......b422332ddd555222d4eebbb4be
+    ......be22232ed55522332db4ebbbbe
+    .....bde22222e555e22232edd4bbbbe
+    .....b52e222e3555e22222eddd4ebee
+    ....bd552eee355552e222e355544eee
+    ....665dd5555555552eee355dd4deee
+    ...6776555555555555555551554d4ee
+    ...4885222555dddd6655551544d4eee
+    ..b45522332555dd677611d444ddeee.
+    ..4d5222232e55555881d44ddd4eee..
+    .bdd5e22222e555115114d54d4ee....
+    .b55d2e222e351144d1d55eeee......
+    bd5ddd2eee3d444555dd4e..........
+    b555115dddd55d544eede...........
+    4511d444d5544ee...4de...........
+    41d4555d4ee........44...........
+    41554eede.......................
+    44ee...4e.......................
+    `, img`
+    4 4 4 . . 4 4 4 4 4 . . . . . . 
+    4 5 5 4 4 5 5 5 5 5 4 4 . . . . 
+    b 4 5 5 1 5 1 1 1 5 5 5 4 . . . 
+    . b 5 5 5 5 1 1 5 5 1 1 5 4 . . 
+    . b d 5 5 5 5 5 5 5 5 1 1 5 4 . 
+    b 4 5 5 5 5 5 5 5 5 5 5 1 5 4 . 
+    c d 5 5 5 5 5 5 5 5 5 5 5 5 5 4 
+    c d 4 5 5 5 5 5 5 5 5 5 5 1 5 4 
+    c 4 5 5 5 d 5 5 5 5 5 5 5 5 5 4 
+    c 4 d 5 4 5 d 5 5 5 5 5 5 5 5 4 
+    . c 4 5 5 5 5 d d d 5 5 5 5 5 b 
+    . c 4 d 5 4 5 d 4 4 d 5 5 5 4 c 
+    . . c 4 4 d 4 4 4 4 4 d d 5 d c 
+    . . . c 4 4 4 4 4 4 4 4 5 5 5 4 
+    . . . . c c b 4 4 4 b b 4 5 4 4 
+    . . . . . . c c c c c c b b 4 . 
+    `, img`
+    ...........ccccc66666...........
+    ........ccc4444444444666........
+    ......cc444444444bb4444466......
+    .....cb4444bb4444b5b444444b.....
+    ....eb4444b5b44444b44444444b....
+    ...ebb44444b4444444444b444446...
+    ..eb6bb444444444bb444b5b444446..
+    ..e6bb5b44444444b5b444b44bb44e..
+    .e66b4b4444444444b4444444b5b44e.
+    .e6bb444444444444444444444bb44e.
+    eb66b44444bb444444444444444444be
+    eb66bb444b5b44444444bb44444444be
+    fb666b444bb444444444b5b4444444bf
+    fcb666b44444444444444bb444444bcf
+    .fbb6666b44444444444444444444bf.
+    .efbb66666bb4444444444444444bfe.
+    .86fcbb66666bbb44444444444bcc688
+    8772effcbbbbbbbbbbbbbbbbcfc22778
+    87722222cccccccccccccccc22226678
+    f866622222222222222222222276686f
+    fef866677766667777776667777fffef
+    fbff877768f86777777666776fffffbf
+    fbeffeefffeff7766688effeeeefeb6f
+    f6bfffeffeeeeeeeeeeeeefeeeeebb6e
+    f66ddfffffeeeffeffeeeeeffeedb46e
+    .c66ddd4effffffeeeeeffff4ddb46e.
+    .fc6b4dddddddddddddddddddb444ee.
+    ..ff6bb444444444444444444444ee..
+    ....ffbbbb4444444444444444ee....
+    ......ffebbbbbb44444444eee......
+    .........fffffffcccccee.........
+    ................................
+    `]
+splitScreen.setSplitScreenEnabled(true)
+splitScreen.cameraFollowSprite(splitScreen.Camera.Camera1, P1)
+splitScreen.cameraFollowSprite(splitScreen.Camera.Camera2, P2)
+splitScreen.setBorderColor(15)
+info.player1.setLife(3)
+info.player2.setLife(3)
 game.onUpdate(function () {
+    let enemyList2: Sprite[] = []
     // Makes enemy follow player after player enters its 75 pixel radius
-    for (let value of sprites.allOfKind(SpriteKind.Enemy)) {
-        if (value.x > P1.x - 75 && value.x < P1.x + 75 && (value.y > P1.y - 75 && value.y < P1.y + 75)) {
-            value.follow(P1, 25)
-            // Changes sprite kind to avoid enemies to constantly switch between players
-            value.setKind(SpriteKind.Enemy)
-        } else if (value.x > P2.x - 75 && value.x < P2.x + 75 && (value.y > P2.y - 75 && value.y < P2.y + 75)) {
-            value.follow(P2, 25)
-            value.setKind(SpriteKind.Enemy)
+    for (let value2 of sprites.allOfKind(SpriteKind.Enemy)) {
+        if (value2.x > P1.x - 75 && value2.x < P1.x + 75 && (value2.y > P1.y - 75 && value2.y < P1.y + 75)) {
+            value2.follow(P1, 50)
+            value2.setKind(SpriteKind.enragedEnemy)
+        }
+        if (value2.x > P2.x - 75 && value2.x < P2.x + 75 && (value2.y > P2.y - 75 && value2.y < P2.y + 75)) {
+            value2.follow(P2, 50)
+            value2.setKind(SpriteKind.enragedEnemy)
         }
     }
-    // Spawns enemies in increasing amounts each time every enemy is eliminated
-    if (enemyList.length == 0) {
-        // Enemies spawn in random floor tiles
+    if (enemyList2.length == 0) {
         SpawnLocation = tiles.getTilesByType(sprites.dungeon.floorDark0)
         sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
         if (wave < 3) {
-            // Initially spawns 10 enemies, but increases by 10 every wave/every iteration of enemy spawning.
             for (let index = 0; index < 10 + wave * 10; index++) {
                 EnemySprite = sprites.create(EnemyImages._pickRandom(), SpriteKind.Enemy)
                 tiles.placeOnTile(EnemySprite, SpawnLocation.removeAt(randint(0, SpawnLocation.length - 1)))
-                enemyList.push(EnemySprite)
+                enemyList2.push(EnemySprite)
             }
             wave += 1
         } else {
-            boss = sprites.create(img`
+            boss2 = sprites.create(img`
                 ..............ccccccccc........
                 ............cc555555555cc......
                 ...........c5555555555555c.....
@@ -618,7 +979,69 @@ game.onUpdate(function () {
                 .........cc55555555c...........
                 ..........cccccccccc...........
                 `, SpriteKind.boss)
-            tiles.placeOnTile(boss, tiles.getTileLocation(8, 8))
+            tiles.placeOnTile(boss2, tiles.getTileLocation(8, 8))
+        }
+    }
+})
+game.onUpdate(function () {
+    // Makes enemy follow player after player enters its 75 pixel radius
+    for (let value of sprites.allOfKind(SpriteKind.Enemy)) {
+        if (value.x > P1.x - 75 && value.x < P1.x + 75 && (value.y > P1.y - 75 && value.y < P1.y + 75)) {
+            value.follow(P1, 25)
+            // Changes sprite kind to avoid enemies to constantly switch between players
+            value.setKind(SpriteKind.Enemy)
+        } else if (value.x > P2.x - 75 && value.x < P2.x + 75 && (value.y > P2.y - 75 && value.y < P2.y + 75)) {
+            value.follow(P2, 25)
+            value.setKind(SpriteKind.Enemy)
+        }
+    }
+    // Spawns enemies in increasing amounts each time every enemy is eliminated
+    if (enemyList.length == 0) {
+        // Enemies spawn in random floor tiles
+        SpawnLocation = tiles.getTilesByType(sprites.dungeon.floorDark0)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+        if (wave < 3) {
+            // Initially spawns 10 enemies, but increases by 10 every wave/every iteration of enemy spawning.
+            for (let index = 0; index < 10 + wave * 10; index++) {
+                EnemySprite = sprites.create(EnemyImages._pickRandom(), SpriteKind.Enemy)
+                tiles.placeOnTile(EnemySprite, SpawnLocation.removeAt(randint(0, SpawnLocation.length - 1)))
+                enemyList.push(EnemySprite)
+            }
+            wave += 1
+        } else {
+            boss2 = sprites.create(img`
+                ..............ccccccccc........
+                ............cc555555555cc......
+                ...........c5555555555555c.....
+                ..........c55555555555555dc....
+                .........c555555555555b5bdc....
+                .........555bc1555555555bdcccc.
+                ........c555ccc55555555bbdccddc
+                ........c555bcb5555555ccddcdddc
+                .......c555555555551ccccddbdddc
+                .......c555555b555c1cccbddbbdbc
+                .......c5555555bbc33333ddddbcc.
+                .......c555555555bc333555ddbc..
+                .......c5555555555555555555c...
+                .......cd555555555555cccc555c..
+                .......cd55555555555c555c555c..
+                .......cdd555555555b5555b555c..
+                .......cddd55555ddbb555bb555c..
+                .......cdddd55555555555b5555c..
+                .......cddddd5555555ddb5555dc..
+                c......cdddddd555555555555dcc..
+                cc...ccddddddd555555555555dc...
+                cdccccdddddd555555d55555ddcc...
+                cdddddddddbd5555555ddddddccccc.
+                ccdddddddbb55555555bddddccbddc.
+                .ccddddddbd55555555bdddccdddc..
+                ..cccddddbd5555555cddcccddbc...
+                ....ccccccd555555bcccc.cccc....
+                .........cc555555bc............
+                .........cc55555555c...........
+                ..........cccccccccc...........
+                `, SpriteKind.boss)
+            tiles.placeOnTile(boss2, tiles.getTileLocation(8, 8))
         }
     }
 })

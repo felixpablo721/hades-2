@@ -367,7 +367,6 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
     sprites.destroy(sprite)
-    sprite.setKind(SpriteKind.Killexplosion)
     sprite.setVelocity(0, 0)
     animation.runImageAnimation(
     sprite,
